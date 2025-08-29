@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — SMS Theater</title>
+<link rel="icon" href="sms-logo.png.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #004aad;
+  --yellow: #f9d71c;
+  --bg-gradient: linear-gradient(135deg, #004aad, #f9d71c);
+  --text-light: #fff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
+body {
+  min-height:100vh;
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+h1 {
+  font-size:6rem;
+  font-weight:900;
+  margin-bottom:20px;
+  text-shadow: 0 0 15px rgba(0,0,0,0.5);
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.stage-emoji {
+  font-size:5rem;
+  margin-bottom:20px;
+}
+
+p {
+  font-size:1.5rem;
+  margin-bottom:30px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+button {
+  padding:15px 30px;
+  background: var(--yellow);
+  color: var(--blue);
+  border:none;
+  border-radius:10px;
+  font-size:1.2rem;
+  font-weight:700;
+  cursor:pointer;
+  transition: all 0.3s;
+}
+button:hover {
+  transform: scale(1.05);
+  background: #fce03c;
+}
+</style>
+</head>
+<body>
+
+<div class="stage-emoji">🎭</div>
+<h1>404</h1>
+<p>Looks like the spotlight isn’t here today.</p>
+<button onclick="window.location.href='index.html'">Return Home</button>
+
+</body>
+</html>
