@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Theater — Coming Soon!</title>
+<link rel="icon" href="sms-logo.png.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #004aad;
+  --yellow: #f9d71c;
+  --bg-gradient: linear-gradient(135deg, #004aad, #f9d71c);
+  --text-light: #fff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
+body {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  flex-direction:column;
+}
+
+h1 { font-size:3rem; font-weight:900; margin-bottom:1rem; text-shadow:0 0 15px rgba(0,0,0,0.5); }
+p { font-size:1.2rem; margin-bottom:2rem; text-shadow:0 0 8px rgba(0,0,0,0.4); }
+
+#countdown { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+.countdown-box {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background: rgba(255,255,255,0.2);
+  padding:15px 20px;
+  border-radius:12px;
+  min-width:70px;
+}
+.countdown-box span { font-size:2rem; font-weight:700; }
+.countdown-box small { margin-top:5px; font-size:0.9rem; }
+
+</style>
+</head>
+<body>
+
+<h1>🎭 SMS Theater</h1>
+<p>Our website is coming soon! Get ready to join the fun.</p>
+
+<div id="countdown">
+  <div class="countdown-box">
+    <span id="days">0</span>
+    <small>Days</small>
+  </div>
+  <div class="countdown-box">
+    <span id="hours">0</span>
+    <small>Hours</small>
+  </div>
+  <div class="countdown-box">
+    <span id="minutes">0</span>
+    <small>Minutes</small>
+  </div>
+  <div class="countdown-box">
+    <span id="seconds">0</span>
+    <small>Seconds</small>
+  </div>
+</div>
+
+<script>
+// Set target date (Next Tuesday: Sep 2, 2025)
+const launchDate = new Date("September 2, 2025 00:00:00").getTime();
+
+const countdown = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = launchDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+
+  if(distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown").innerHTML = "🎉 Website is Live! 🎉";
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
