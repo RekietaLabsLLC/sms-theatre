@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Theater — Gallery</title>
+<link rel="icon" href="sms-logo.png.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #004aad;
+  --yellow: #f9d71c;
+  --bg-gradient: linear-gradient(135deg, #004aad, #f9d71c);
+  --text-light: #fff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
+body {
+  min-height:100vh;
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px;
+}
+
+header {
+  width:100%;
+  display:flex; justify-content:center; align-items:center;
+  padding:1rem;
+  margin-bottom:20px;
+}
+header h1 { color: var(--yellow); font-weight:900; font-size:2rem; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+
+h2 { font-size:2rem; color:white; text-shadow: 0 0 8px rgba(0,0,0,0.5); margin-bottom:20px; text-align:center; }
+
+/* TAB BUTTONS */
+.tabs {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+}
+.tab-btn {
+  padding:10px 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  transition: all 0.3s;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.4); }
+.tab-btn.active { background: var(--yellow); color: var(--blue); }
+
+/* GALLERY GRID */
+.gallery {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap:20px;
+  width:100%;
+  max-width:1200px;
+  margin-bottom:60px;
+}
+.gallery img {
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor:pointer;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* FEATURED CARD */
+.featured-card {
+  background: var(--yellow);
+  color: var(--blue);
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:700;
+  margin-bottom:20px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.featured-card:hover { transform: scale(1.03); }
+
+/* FOOTER */
+footer {
+  margin-top:40px;
+  padding:20px;
+  width:100%;
+  text-align:center;
+  color: var(--text-light);
+  font-weight:600;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Hide inactive galleries */
+.tab-content { display:none; }
+
+@media(max-width:768px){
+  h2 { font-size:1.5rem; }
+  .tab-btn { padding:8px 16px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SMS Theater Gallery</h1>
+</header>
+
+<h2>Rehearsals, Plays, and Class Pictures</h2>
+
+<div class="tabs">
+  <div class="tab-btn active" data-tab="rehearsals">Rehearsals</div>
+  <div class="tab-btn" data-tab="plays">Plays</div>
+  <div class="tab-btn" data-tab="classes">Class Pictures</div>
+</div>
+
+<!-- Rehearsals -->
+<div id="rehearsals" class="tab-content" style="display:grid;">
+  <div class="gallery">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Rehearsal 1">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Rehearsal 2">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Rehearsal 3">
+  </div>
+</div>
+
+<!-- Plays -->
+<div id="plays" class="tab-content">
+  <!-- Featured One Act Play -->
+  <div class="featured-card">
+    🎭 SMS One Act Play — Public Performance<br>
+    <strong>Date:</strong> December 12, 2025
+  </div>
+  <div class="gallery">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Play 1">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Play 2">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Play 3">
+  </div>
+</div>
+
+<!-- Class Pictures -->
+<div id="classes" class="tab-content">
+  <div class="gallery">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Class 1">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Class 2">
+    <img src="https://sms-theatre.netlify.app/IMG_0101.jpeg" alt="Class 3">
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 SMS Theater. All Rights Reserved.
+</footer>
+
+<script>
+const tabs = document.querySelectorAll('.tab-btn');
+const contents = document.querySelectorAll('.tab-content');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // Remove active from all tabs
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    // Hide all content
+    contents.forEach(c => c.style.display = 'none');
+
+    // Show selected content
+    const target = document.getElementById(tab.dataset.tab);
+    target.style.display = 'grid';
+  });
+});
+</script>
+
+</body>
+</html>
